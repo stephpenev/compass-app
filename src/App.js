@@ -1,5 +1,9 @@
 import './App.css';
 import firebase from './firebase.js';
+import Header from './Components/Header.js';
+// import IntentionForm from './Components/IntentionForm.js';
+// import IntentionInput from "./Components/IntentionInput.js";
+import Footer from './Components/Footer';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -31,10 +35,17 @@ function App() {
   // - use imported Result and Date components
   // - footer component
 
+  // setting states
   const [ intentionArray, setIntentionArray ] = useState([]);
 
+  const [ textInput, setTextInput ] = useState('');
+
+  const [ textInputErr, setTextInputErr ] = useState({});
+
+  const dbRef = firebase.database().ref();
+
+  // once component is rendered, add input to database
   useEffect(() => {
-    const dbRef = firebase.database().ref();
 
     dbRef.on('value', (data) => {
       // console.log(data.val());
@@ -53,20 +64,83 @@ function App() {
 
   }, []);
 
-  return (
-    <div className="App">
-      <form action="">
-        <label htmlFor="intentionInput">What one word, or feeling, would you like to move through this day with?</label>
-        <input type="text" id="intentionInput" placeholder="Type here"/>
-        <button>Embark</button>
-      </form>
+  // handle input change
+  const handleChange = (event) => {
+    setTextInput(event.target.value);
+  }
 
-      <header className="App-header"></header>
-      <ul className="intentionLog">
-        {intentionArray.map((item) => {
-          return <li key={item.uniqueKey}>{item.intention}</li>;
-        })}
-      </ul>
+  // validate input
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const isValid = formValidation();
+    if(isValid){
+      dbRef.push(textInput);
+      setTextInput("");
+    }
+  }
+
+  const formValidation = () => {
+    const textInputErr = {};
+    let isValid = true;
+    if(textInput.trim().length < 4){
+      textInputErr.textInputShort = 'Please type a full word to continue.';
+      isValid = false;
+    }
+    if (textInput.trim().length > 14){
+      textInputErr.textInputLong = 'Please only type one to two words.';
+      isValid = false;
+    }
+    setTextInputErr(textInputErr);
+    return isValid;
+  }
+
+  const handleClick = (itemUniqueId) => {
+    dbRef.child(itemUniqueId).remove();
+  }
+
+  return (
+    <div className="wrapper">
+      <Header />
+
+      <main>
+        <form action="" onSubmit={handleSubmit}>
+          <label htmlFor="intentionInput">
+            What one word, or feeling, would you like to move through this day
+            with?
+          </label>
+          <input
+            type="text"
+            id="intentionInput"
+            placeholder="Type here"
+            onChange={handleChange}
+            value={textInput}
+          />
+          {Object.keys(textInputErr).map((key) => {
+            return <div style={{ color: "red" }}>{textInputErr[key]}</div>;
+          })}
+          <button>Embark</button>
+        </form>
+
+        <ul className="intentionLog">
+          {intentionArray.map((item) => {
+            return (
+              <li key={item.uniqueKey}>
+                <span>{item.intention}</span>
+                <button
+                  onClick={() => {
+                    handleClick(item.uniqueKey);
+                  }}
+                >
+                  Delete
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

@@ -37,6 +37,10 @@
   }
 }
 
+.header {
+  background-color: grey;
+}
+
 .intentionLog {
   border: 2px solid goldenrod;
 }
