@@ -2,7 +2,6 @@ import './App.css';
 import firebase from './firebase.js';
 import React from "react";
 import Header from './Components/Header.js';
-// import IntentionForm from './Components/IntentionForm.js';
 // import IntentionInput from "./Components/IntentionInput.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -76,25 +75,21 @@ function App() {
     setTextInput(event.target.value);
   }
 
-  // const handleDate = (event) => {
-  //   setHandleDate(event.target.value);
-  // }
-
   // validate input and push data into database
   const handleSubmit = (event) => {
     event.preventDefault();
     const isValid = formValidation();
 
-    // In order to put the date into the db too, we parsed the date from the handleDate variable:
+    // In order to put the date into the db too, parse the date from the handleDate variable:
     const date = handleDate.toDateString();
 
-    // we put the data into an object, and passed in the date and text properties:
+    // put the data into an object, and passed in the date and text properties:
     const dataObject = {
     date: date,
     text: textInput,
     }
 
-    // we push in the dataObject to the db:
+    // push in the dataObject to the db:
     if(isValid){
       dbRef.push(dataObject);
       setTextInput("");
@@ -148,13 +143,11 @@ function App() {
           {intentionArray.map((item) => {
             return (
               <li key={item.uniqueKey}>
-                {/* we pass in the date value to also show on the page */}
                 <span>{item.todaysDate} </span>
                 <span>{item.intention}</span>
                 <button
                   onClick={() => {
                     handleClick(item.uniqueKey);
-                    // handleDate(date);
                   }}
                 >
                   Delete
