@@ -3,7 +3,6 @@ import React from "react";
 const Footer = () => {
   return (
     <footer>
-      {/* <p>Built by Stephanie Penev, 2021</p> */}
       <p className="wrapper">
         Built at{" "}
         <a

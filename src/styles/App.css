@@ -188,15 +188,6 @@ template {
   display: none;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: "";
-  clear: both;
-  height: 0;
-}
-
 html {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -207,19 +198,6 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
 }
 
 html {
@@ -392,7 +370,9 @@ input[type="text"]::placeholder {
 
 .intentionLabel h3 {
   line-height: 2.5rem;
+  margin-top: 10px;
   color: #ffffff;
+  font-family: "Shippori Mincho B1", serif;
 }
 
 .react-datepicker__input-container input {
@@ -406,7 +386,7 @@ input[type="text"]::placeholder {
   width: 60%;
   height: 30px;
   min-width: 240px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .submitButton {
@@ -418,7 +398,8 @@ input[type="text"]::placeholder {
   padding-left: 4px;
 }
 
-.intentionForm button:hover {
+.intentionForm button:hover,
+.intentionForm button:focus {
   background-color: #a27a8f;
 }
 
@@ -445,7 +426,7 @@ input[type="text"]::placeholder {
   margin-top: 50px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -478,7 +459,8 @@ input[type="text"]::placeholder {
   width: 80px;
 }
 
-.intentionLogList li button:hover {
+.intentionLogList li button:hover,
+.intentionLogList li button:focus {
   background-color: #084683;
 }
 
@@ -490,7 +472,7 @@ footer {
   width: 100%;
   position: fixed;
   bottom: 0;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   background-color: #5c89b5;
 }
 
@@ -504,6 +486,11 @@ footer a {
   color: #ffffff;
   font-weight: 700;
   text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus {
+  color: #084683;
 }
 
 /* Media queries */
@@ -526,6 +513,7 @@ footer a {
 
   .suggestionBox {
     margin-left: 0;
+    margin-top: 30px;
     text-align: center;
   }
 
@@ -549,12 +537,30 @@ footer a {
     font-size: 2rem;
   }
 
+  .react-datepicker__input-container input {
+    width: 60%;
+  }
+
+  .intentionInput,
+  .submitButton {
+    width: 100%;
+  }
+
   .intentionForm {
     min-width: 300px;
+    width: 100%;
   }
 
   .intentionLogList li {
     width: 100%;
     height: 200px;
   }
+}
+
+@media (max-width: 370px) {
+
+  .wrapper {
+    width: 95%;
+  }
+
 }

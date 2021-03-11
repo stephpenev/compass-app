@@ -1,4 +1,4 @@
-import './App.css';
+import '././styles/App.css';
 import firebase from './firebase.js';
 import React from "react";
 import Header from './Components/Header.js';
@@ -8,53 +8,17 @@ import Footer from './Components/Footer';
 import { useEffect, useState } from 'react';
 
 function App() {
-  // SCOPE --
-  // An app which holds daily intentions
-  // List of intentions comes from user input
-  // Store intentions in the parent (App) component
-    // pass down to the child (userIntention) component
-    // Initialize a state to keep track of the intentions as they are added or removed
-  // Create a userIntention component which will display each individual intention
-  // each intention will have a delete button which removes it from the list
 
-  // PARTS --
-  // *** App Component ***
-  // Two local methods (handleChange) to handle the onChange events to update states with user input:
-  // - userIntention
-  // - dateInput
-
-  // *** Result Component ***
-  // Handles user intention input
-
-  // *** Date Component ***
-  // Handles user date input
-
-  // Render the application
-  // - header component
-  // - a form for user input
-  // - a date picker that is connected to input upon submit (to log in the db too)
-  // - one HTML/CSS section on the page which is activated upon click / hover
-  // - use imported Result and Date components
-  // - footer component
-
-  // setting states
   const [ intentionArray, setIntentionArray ] = useState([]);
-
   const [ handleDate, setHandleDate ] = useState(null);
-
   const [ textInput, setTextInput ] = useState('');
-
   const [ textInputErr, setTextInputErr ] = useState({});
 
-  // const dbRef = firebase.database().ref();
-
-  // once component is rendered, add input to database
   useEffect(() => {
 
     const dbRef = firebase.database().ref();
 
     dbRef.on('value', (data) => {
-      // console.log(data.val());
 
       const intentionData = data.val();
       const intentionsInState = [];
@@ -71,27 +35,22 @@ function App() {
 
   }, []);
 
-  // handle input change
   const handleChange = (event) => {
     setTextInput(event.target.value);
   }
 
-  // validate input and push data into database
   const handleSubmit = (event) => {
-    const dbRef = firebase.database().ref();
     event.preventDefault();
-    const isValid = formValidation();
 
-    // In order to put the date into the db too, parse the date from the handleDate variable:
+    const dbRef = firebase.database().ref();
+    const isValid = formValidation();
     const date = handleDate.toDateString();
 
-    // put the data into an object, and pass in the date and text properties:
     const dataObject = {
     date: date,
     text: textInput,
     }
 
-    // push in the dataObject to the db:
     if(isValid){
       dbRef.push(dataObject);
       setTextInput("");
@@ -121,7 +80,6 @@ function App() {
   return (
     <div>
       <Header />
-
       <main className="wrapper">
         <form className="intentionForm" onSubmit={handleSubmit}>
           <div className="calendar">
@@ -208,8 +166,6 @@ function App() {
           })}
         </ul>
       </section>
-
-      {/* Footer */}
       <Footer />
     </div>
   );
