@@ -2,7 +2,6 @@ import './App.css';
 import firebase from './firebase.js';
 import React from "react";
 import Header from './Components/Header.js';
-// import IntentionInput from "./Components/IntentionInput.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from './Components/Footer';
@@ -47,10 +46,12 @@ function App() {
 
   const [ textInputErr, setTextInputErr ] = useState({});
 
-  const dbRef = firebase.database().ref();
+  // const dbRef = firebase.database().ref();
 
   // once component is rendered, add input to database
   useEffect(() => {
+
+    const dbRef = firebase.database().ref();
 
     dbRef.on('value', (data) => {
       // console.log(data.val());
@@ -77,13 +78,14 @@ function App() {
 
   // validate input and push data into database
   const handleSubmit = (event) => {
+    const dbRef = firebase.database().ref();
     event.preventDefault();
     const isValid = formValidation();
 
     // In order to put the date into the db too, parse the date from the handleDate variable:
     const date = handleDate.toDateString();
 
-    // put the data into an object, and passed in the date and text properties:
+    // put the data into an object, and pass in the date and text properties:
     const dataObject = {
     date: date,
     text: textInput,
@@ -103,7 +105,7 @@ function App() {
       textInputErr.textInputShort = 'Please type a full word to continue.';
       isValid = false;
     }
-    if (textInput.trim().length > 14){
+    if (textInput.trim().length > 20){
       textInputErr.textInputLong = 'Please only type one to two words.';
       isValid = false;
     }
@@ -112,51 +114,100 @@ function App() {
   }
 
   const handleClick = (itemUniqueId) => {
+    const dbRef = firebase.database().ref();
     dbRef.child(itemUniqueId).remove();
   }
 
   return (
-    <div className="wrapper">
+    <div>
       <Header />
 
-      <main>
-        <DatePicker selected={handleDate} onChange={date => setHandleDate(date)} dateFormat='MM/dd/yyyy' minDate={new Date()} placeholderText={`Choose date`} required/>
-        <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="intentionInput">
-            What one word, or feeling, would you like to move through this day
-            with?
+      <main className="wrapper">
+        <form className="intentionForm" onSubmit={handleSubmit}>
+          <div className="calendar">
+            <DatePicker
+              selected={handleDate}
+              onChange={(date) => setHandleDate(date)}
+              dateFormat="MM/dd/yyyy"
+              minDate={new Date()}
+              placeholderText={`Today's date`}
+              required
+            />
+          </div>
+          <label className="intentionLabel" htmlFor="intentionInput">
+            <h3>
+              What intention (in one or two words) would you like to move
+              through the coming day with?
+            </h3>
           </label>
           <input
+            className="intentionInput"
             type="text"
             id="intentionInput"
-            placeholder="Type here"
+            placeholder="Eg. Presence"
             onChange={handleChange}
             value={textInput}
           />
           {Object.keys(textInputErr).map((key) => {
             return <div style={{ color: "red" }}>{textInputErr[key]}</div>;
           })}
-          <button>Log Entry</button>
+          <button className="submitButton">Embark</button>
         </form>
-
-        <ul className="intentionLog">
+        <aside className="suggestionBox">
+          <h3>Ideas to get you started...</h3>
+          <ul className="suggestionInputs">
+            <li>
+              <h4>Peace</h4>
+            </li>
+            <li>
+              <h4>Simplicity</h4>
+            </li>
+            <li>
+              <h4>Empathy</h4>
+            </li>
+            <li>
+              <h4>Focus</h4>
+            </li>
+            <li>
+              <h4>Strength</h4>
+            </li>
+            <li>
+              <h4>Leadership</h4>
+            </li>
+            <li>
+              <h4>Forgiveness</h4>
+            </li>
+            <li>
+              <h4>Resilience</h4>
+            </li>
+            <li>
+              <h4>Gratitude</h4>
+            </li>
+            <li>
+              <h4>Open-mindedness</h4>
+            </li>
+          </ul>
+        </aside>
+      </main>
+      <section className="intentionLogs wrapper">
+        <ul className="intentionLogList">
           {intentionArray.map((item) => {
             return (
               <li key={item.uniqueKey}>
-                <span>{item.todaysDate} </span>
-                <span>{item.intention}</span>
+                <span className="date">{item.todaysDate} </span>
+                <span className="intention">{item.intention}</span>
                 <button
                   onClick={() => {
                     handleClick(item.uniqueKey);
                   }}
                 >
-                  Delete
+                  Remove
                 </button>
               </li>
             );
           })}
         </ul>
-      </main>
+      </section>
 
       {/* Footer */}
       <Footer />
