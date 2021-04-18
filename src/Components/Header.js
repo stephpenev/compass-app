@@ -11,6 +11,7 @@ const Header = () => {
       </div>
       <h2>A Daily Intention-Setting Log</h2>
     </header>
+    
   );
 };
 
