@@ -59,6 +59,7 @@ function App() {
       dbRef.push(dataObject);
       setTextInput("");
       setTextExpand("");
+      setHandleDate(null);
     }
   };
 
@@ -86,72 +87,88 @@ function App() {
     <div>
       <Header />
       <main className="wrapper">
-        <form className="intentionForm" onSubmit={handleSubmit}>
-          <div className="calendar">
+        <section className="input">
+          <form className="intentionForm" onSubmit={handleSubmit}>
+            <div className="calendar">
+              <label
+                htmlFor="date"
+                className="intentionLabel"
+                id="intentionDate"
+              >
+                <h3>Today's Date:</h3>
+              </label>
+              <input
+                aria-describedby="intention-date"
+                type="date"
+                className="date"
+                required
+                value={handleDate}
+                selected={handleDate}
+                onChange={(e) => setHandleDate(e.target.value)}
+              />
+            </div>
+            <label
+              className="intentionLabel"
+              id="intentionLabel"
+              htmlFor="intentionInput"
+            >
+              <h3>
+                What intention (in one or two words) would you like to move
+                through the coming day with? I.e. Presence.
+              </h3>
+            </label>
             <input
-              type="date"
-              id="datefield"
-              required
-              // min="2021-03-09"
-              // max="2030-12-31"
-              // dateFormat="mm/dd/yyyy"
-              // placeholderText="Today's date"
-              value={handleDate}
-              selected={handleDate}
-              onChange={(e) => setHandleDate(e.target.value)}
+              aria-describedby="intention-label"
+              className="intentionInput"
+              type="text"
+              id="intentionInput"
+              onChange={handleChange}
+              value={textInput}
             />
-          </div>
-          <label className="intentionLabel" htmlFor="intentionInput">
-            <h3>
-              What intention (in one or two words) would you like to move
-              through the coming day with?
-            </h3>
-          </label>
-          <input
-            className="intentionInput"
-            type="text"
-            id="intentionInput"
-            placeholder="Eg. Presence"
-            onChange={handleChange}
-            value={textInput}
-          />
-          {Object.keys(textInputErr).map((key) => {
-            return <div style={{ color: "red" }}>{textInputErr[key]}</div>;
-          })}
-          <textarea
-            value={textExpand}
-            className="textExpand"
-            id="textExpand"
-            name="description"
-            placeholder="If you'd like, expand on your intention."
-            maxLength="300"
-            onChange={handleTextExpand}
-          ></textarea>
-
-          <button className="submitButton">Embark</button>
-        </form>
-        <Prompts />
+            {Object.keys(textInputErr).map((key) => {
+              return <div style={{ color: "red" }}>{textInputErr[key]}</div>;
+            })}
+            <label
+              className="intentionLabel"
+              id="intentionDescription"
+              htmlFor="intentionInput"
+            >
+              <h3>If you'd like, expand on your intention.</h3>
+            </label>
+            <textarea
+              aria-describedby="intention-description"
+              value={textExpand}
+              className="textExpand"
+              id="textExpand"
+              name="description"
+              maxLength="300"
+              onChange={handleTextExpand}
+            ></textarea>
+            <button className="submitButton">Remember</button>
+          </form>
+          <Prompts />
+        </section>
+        <section className="intentionLogs">
+          <ul className="intentionLogList">
+            {intentionArray.map((item) => {
+              return (
+                <li key={item.uniqueKey}>
+                  <span className="date">{item.todaysDate} </span>
+                  <span className="intention">{item.intention}</span>
+                  <span className="textExpand">{item.intentionDesc}</span>
+                  <button
+                    onClick={() => {
+                      handleClick(item.uniqueKey);
+                    }}
+                  >
+                    X
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </main>
-      <section className="intentionLogs wrapper">
-        <ul className="intentionLogList">
-          {intentionArray.map((item) => {
-            return (
-              <li key={item.uniqueKey}>
-                <span className="date">{item.todaysDate} </span>
-                <span className="intention">{item.intention}</span>
-                <span className="textExpand">{item.intentionDesc}</span>
-                <button
-                  onClick={() => {
-                    handleClick(item.uniqueKey);
-                  }}
-                >
-                  X
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
       <Footer />
     </div>
   );

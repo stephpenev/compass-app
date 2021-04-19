@@ -248,53 +248,17 @@ body {
   font-weight: 400;
   font-size: 2rem;
   position: relative;
-  background: linear-gradient(90deg, #f3f2fa, #c7dbff);
-  background-size: 200% 200%;
-
-  -webkit-animation: AnimationName 50s ease infinite;
-  -moz-animation: AnimationName 50s ease infinite;
-  animation: AnimationName 50s ease infinite;
-}
-
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: url(/src/assets/pexels-lumn-167699.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
 }
 
 .wrapper {
   margin: 0 auto;
   max-width: 1200px;
   width: 90%;
-  position: relative;
+  /* position: relative; */
 }
 
 button {
@@ -328,19 +292,20 @@ header {
 
 /* Main section */
 
-main {
-  padding-top: 50px;
+.input {
+  padding-top: 40px;
   display: flex;
 }
 
 form {
+  width: 70%;
+  min-width: 380px;
+  height: auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 30px;
-  width: 60%;
-  min-width: 380px;
-  background-color: #084683;
+  padding: 0 30px 30px;
+  background-color: rgba(224, 232, 249, 0.5);
 }
 
 .react-datepicker__navigation,
@@ -348,20 +313,45 @@ form {
   display: none;
 }
 
-input[type="text"] {
-  background-color: #084683;
-  color: #ffffff;
+input[type="text"],
+input[type="date"],
+textarea {
+  background-color: rgba(224, 232, 249, 0.6);
+  color: #084683;
   border: none;
-  border-radius: 2px;
-  padding-left: 4px;
-  border-bottom: 1px solid #ffffff;
+  padding: 10px;
+  border-bottom: 2px solid #084683;
   font-family: "Open Sans", "sans-serif";
+  font-size: 1.9rem;
 }
 
-input[type="text"]::placeholder {
-  font-family: "Open Sans", "sans-serif";
-  color: #ffffff;
-  font-size: 1.7rem;
+.calendar {
+  display: flex;
+}
+
+input[type="date"] {
+  margin-left: 15px;
+  transform: translateY(10px);
+}
+
+input[type="text"] {
+  width: 50%;
+  padding: 20px;
+}
+
+textarea {
+  height: 20%;
+  margin-top: 10px;
+  border: none;
+  border-bottom: 2px solid #084683;
+  border-radius: 2px;
+  background-color: rgba(224, 232, 249, 0.5);
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  font-size: 1.9rem;
+  color: #084683;
 }
 
 .intentionLabel {
@@ -370,8 +360,9 @@ input[type="text"]::placeholder {
 
 .intentionLabel h3 {
   line-height: 2.5rem;
+  font-size: 2.2rem;
   margin-top: 10px;
-  color: #ffffff;
+  color: #084683;
   font-family: "Shippori Mincho B1", serif;
 }
 
@@ -396,18 +387,21 @@ input[type="text"]::placeholder {
   margin-top: 10px;
   border-radius: 2px;
   padding-left: 4px;
+  align-self: flex-end;
 }
 
 .intentionForm button:hover,
 .intentionForm button:focus {
-  background-color: #a27a8f;
+  background-color: #0f1d35;
 }
 
 /* Aside section */
 
 .suggestionBox {
-  margin-top: 60px;
+  align-self: flex-end;
   margin-left: 30px;
+  padding: 30px;
+  background-color: rgba(224, 232, 249, 0.5);
 }
 
 .suggestionBox h3 {
@@ -416,8 +410,8 @@ input[type="text"]::placeholder {
 
 .suggestionInputs h4 {
   font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
 }
 
 /* Intention Entries */
@@ -524,7 +518,6 @@ footer a:focus {
 }
 
 @media (max-width: 500px) {
-
   .headerLogo h1 {
     font-size: 4rem;
   }
@@ -558,9 +551,7 @@ footer a:focus {
 }
 
 @media (max-width: 370px) {
-
   .wrapper {
     width: 95%;
   }
-
 }

@@ -9,9 +9,8 @@ const Header = () => {
         <h1>Compass</h1>
         <FontAwesomeIcon icon={faCompass} className="faIcon" />
       </div>
-      <h2>A Daily Intention-Setting Log</h2>
+      <h2>A Daily Intention-Setting Guide</h2>
     </header>
-    
   );
 };
 
