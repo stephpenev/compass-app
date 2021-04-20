@@ -219,12 +219,15 @@ a {
 h1 {
   font-weight: 600;
   font-size: 5rem;
+  letter-spacing: 0.01rem;
   margin: 0;
 }
 
 h2 {
-  margin-top: 2rem;
-  font-size: 2.5rem;
+  font-family: "Open Sans", sans-serif;
+  margin-top: 2.5rem;
+  margin-left: 35px;
+  font-size: 2.2rem;
   color: #084683;
 }
 
@@ -243,7 +246,6 @@ ul {
 }
 
 body {
-  height: 100vh;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 2rem;
@@ -303,9 +305,8 @@ form {
   height: auto;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   padding: 0 30px 30px;
-  background-color: rgba(224, 232, 249, 0.5);
+  background-color: rgba(224, 232, 249, 0.4);
 }
 
 .react-datepicker__navigation,
@@ -316,7 +317,7 @@ form {
 input[type="text"],
 input[type="date"],
 textarea {
-  background-color: rgba(224, 232, 249, 0.6);
+  background-color: rgba(224, 232, 249);
   color: #084683;
   border: none;
   padding: 10px;
@@ -336,16 +337,17 @@ input[type="date"] {
 
 input[type="text"] {
   width: 50%;
+  min-width: 320px;
   padding: 20px;
 }
 
 textarea {
-  height: 20%;
+  height: 150px;
+  width: 100%;
   margin-top: 10px;
   border: none;
   border-bottom: 2px solid #084683;
   border-radius: 2px;
-  background-color: rgba(224, 232, 249, 0.5);
 }
 
 input[type="text"]::placeholder,
@@ -364,6 +366,11 @@ textarea::placeholder {
   margin-top: 10px;
   color: #084683;
   font-family: "Shippori Mincho B1", serif;
+}
+
+.intentionOne {
+  width: 80%;
+  min-width: 320px;
 }
 
 .react-datepicker__input-container input {
@@ -398,10 +405,11 @@ textarea::placeholder {
 /* Aside section */
 
 .suggestionBox {
+  width: 20%;
   align-self: flex-end;
   margin-left: 30px;
   padding: 30px;
-  background-color: rgba(224, 232, 249, 0.5);
+  background-color: rgba(224, 232, 249, 0.6);
 }
 
 .suggestionBox h3 {
@@ -417,7 +425,8 @@ textarea::placeholder {
 /* Intention Entries */
 
 .intentionLogList {
-  margin-top: 50px;
+  margin: 50px 0 30px 0;
+  padding-left: 30px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -428,11 +437,13 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: calc((100% - 40px) / 3);
-  height: 150px;
-  border-top: 1px solid #804563;
-  padding-top: 3px;
-  margin-right: 10px;
+  align-items: center;
+  width: calc((100% - 60px) / 3);
+  height: 300px;
+  padding: 10px 25px 10px;
+  margin: 0 20px 20px 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 2%;
 }
 
 .intentionLogList li:last-of-type {
@@ -441,16 +452,26 @@ textarea::placeholder {
 
 .intentionLogList li .date {
   font-size: 1.7rem;
+  padding: 10px;
 }
 
 .intentionLogList li .intention {
+  font-family: "Shippori Mincho B1", serif;
   font-weight: 700;
-  color: #804563;
+  font-size: 2.8rem;
+  color: #9d845f;
   padding: 8px 0 20px 0;
 }
 
+.textExpandEntry {
+  height: 50%;
+  overflow-y: scroll;
+  font-size: 1.8rem;
+}
+
 .intentionLogList li button {
-  width: 80px;
+  width: 30px;
+  align-self: flex-end;
 }
 
 .intentionLogList li button:hover,
@@ -461,18 +482,14 @@ textarea::placeholder {
 /* Footer */
 
 footer {
-  display: flex;
-  height: 35px;
+  padding: 15px;
+  height: 40px;
   width: 100%;
-  position: fixed;
-  bottom: 0;
+  text-align: center;
   font-size: 1.5rem;
-  background-color: #5c89b5;
 }
 
 footer p {
-  align-self: center;
-  margin: 0;
   color: #ffffff;
 }
 

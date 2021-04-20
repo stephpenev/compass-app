@@ -5,7 +5,7 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 const Prompts = () => {
   return (
     <aside className="suggestionBox">
-      <h3>Ideas to get you started?</h3>
+      <h3>Intention Ideas</h3>
       <FontAwesomeIcon icon={faCaretDown} className="faIcon" />
       <ul className="suggestionInputs">
         <li>

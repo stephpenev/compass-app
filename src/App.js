@@ -2,15 +2,13 @@ import "././styles/App.css";
 import firebase from "./firebase.js";
 import React from "react";
 import Header from "./Components/Header.js";
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
 import Prompts from "./Components/Prompts"
 import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
 
 function App() {
   const [intentionArray, setIntentionArray] = useState([]);
-  const [handleDate, setHandleDate] = useState(null);
+  const [handleDate, setHandleDate] = useState("");
   const [textInput, setTextInput] = useState("");
   const [textExpand, setTextExpand] = useState("");
   const [textInputErr, setTextInputErr] = useState({});
@@ -59,7 +57,7 @@ function App() {
       dbRef.push(dataObject);
       setTextInput("");
       setTextExpand("");
-      setHandleDate(null);
+      setHandleDate("");
     }
   };
 
@@ -112,7 +110,7 @@ function App() {
               id="intentionLabel"
               htmlFor="intentionInput"
             >
-              <h3>
+              <h3 className="intentionOne">
                 What intention (in one or two words) would you like to move
                 through the coming day with? I.e. Presence.
               </h3>
@@ -124,12 +122,13 @@ function App() {
               id="intentionInput"
               onChange={handleChange}
               value={textInput}
+              placeholder="My intention is..."
             />
             {Object.keys(textInputErr).map((key) => {
               return <div style={{ color: "red" }}>{textInputErr[key]}</div>;
             })}
             <label
-              className="intentionLabel"
+              className="intentionLabel intentionDescription"
               id="intentionDescription"
               htmlFor="intentionInput"
             >
@@ -143,6 +142,7 @@ function App() {
               name="description"
               maxLength="300"
               onChange={handleTextExpand}
+              placeholder="A little bit more about that..."
             ></textarea>
             <button className="submitButton">Remember</button>
           </form>
@@ -155,7 +155,7 @@ function App() {
                 <li key={item.uniqueKey}>
                   <span className="date">{item.todaysDate} </span>
                   <span className="intention">{item.intention}</span>
-                  <span className="textExpand">{item.intentionDesc}</span>
+                  <span className="textExpandEntry">{item.intentionDesc}</span>
                   <button
                     onClick={() => {
                       handleClick(item.uniqueKey);
