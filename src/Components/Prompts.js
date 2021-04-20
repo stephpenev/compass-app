@@ -1,12 +1,12 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 const Prompts = () => {
   return (
     <aside className="suggestionBox">
-      <h3>Intention Ideas</h3>
-      <FontAwesomeIcon icon={faCaretDown} className="faIcon" />
+      <h3 className="intentionIdeas">Ideas</h3>
+      {/* <FontAwesomeIcon icon={faCaretDown} className="faIcon" /> */}
       <ul className="suggestionInputs">
         <li>
           <h4>Peace</h4>
