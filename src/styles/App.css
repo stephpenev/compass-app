@@ -303,7 +303,7 @@ form {
   min-width: 380px;
   display: flex;
   flex-direction: column;
-  padding: 20px  30px;
+  padding: 20px 30px;
   background-color: rgba(224, 232, 249, 0.4);
 }
 
@@ -394,8 +394,6 @@ textarea::placeholder {
 
 .suggestionBox {
   min-width: 215px;
-  /* height: auto;
-  align-self: flex-end; */
   margin-left: 30px;
   padding: 20px;
   background-color: rgba(224, 232, 249, 0.6);
@@ -427,7 +425,7 @@ textarea::placeholder {
   margin-top: 50px;
   width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px,2fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 2fr));
   grid-gap: 10px;
   grid-auto-rows: 300px;
 }
@@ -494,7 +492,7 @@ footer a {
 
 footer a:hover,
 footer a:focus {
-  color: #084683;
+  border-bottom: 1px solid #fff;
 }
 
 /* Media queries */
@@ -530,17 +528,16 @@ footer a:focus {
 }
 
 @media (max-width: 880px) {
-
   .intentionLogList {
     margin: 0 auto;
     margin-top: 50px;
   }
 
-    .intentionLogList li {
-      margin: 0 auto;
-      margin-bottom: 20px;
-      width: 90%;
-    }
+  .intentionLogList li {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 90%;
+  }
 }
 
 @media (max-width: 750px) {
@@ -594,7 +591,7 @@ footer a:focus {
 
   .suggestionInputs li {
     margin: 10px;
-}
+  }
 }
 
 @media (max-width: 500px) {
