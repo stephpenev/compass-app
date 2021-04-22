@@ -219,12 +219,15 @@ a {
 h1 {
   font-weight: 600;
   font-size: 5rem;
+  letter-spacing: 0.01rem;
   margin: 0;
 }
 
 h2 {
-  margin-top: 2rem;
-  font-size: 2.5rem;
+  font-family: "Open Sans", sans-serif;
+  margin-top: 2.5rem;
+  margin-left: 35px;
+  font-size: 2.2rem;
   color: #084683;
 }
 
@@ -243,58 +246,20 @@ ul {
 }
 
 body {
-  height: 100vh;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 2rem;
   position: relative;
-  background: linear-gradient(90deg, #f3f2fa, #c7dbff);
-  background-size: 200% 200%;
-
-  -webkit-animation: AnimationName 50s ease infinite;
-  -moz-animation: AnimationName 50s ease infinite;
-  animation: AnimationName 50s ease infinite;
-}
-
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: url(/src/assets/pexels-lumn-167699.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .wrapper {
   margin: 0 auto;
   max-width: 1200px;
-  width: 85%;
-  position: relative;
+  width: 90%;
 }
 
 button {
@@ -310,7 +275,7 @@ button {
 /* Header */
 
 header {
-  padding-top: 50px;
+  padding-top: 40px;
   font-family: "Shippori Mincho B1", serif;
   font-weight: 600;
 }
@@ -328,40 +293,60 @@ header {
 
 /* Main section */
 
-main {
-  padding-top: 50px;
+.input {
+  padding-top: 30px;
   display: flex;
 }
 
 form {
+  width: 70%;
+  min-width: 380px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  padding: 30px;
-  width: 60%;
-  min-width: 380px;
-  background-color: #084683;
+  padding: 20px 30px;
+  background-color: rgba(224, 232, 249, 0.4);
 }
 
-.react-datepicker__navigation,
-.react-datepicker__navigation--next {
-  display: none;
+input[type="text"],
+input[type="date"],
+textarea {
+  background-color: rgba(224, 232, 249);
+  color: #084683;
+  border: none;
+  padding: 10px;
+  border-bottom: 2px solid #084683;
+  font-family: "Open Sans", "sans-serif";
+  font-size: 1.9rem;
+}
+
+.calendar {
+  display: flex;
+}
+
+input[type="date"] {
+  margin-left: 15px;
+  transform: translateY(10px);
 }
 
 input[type="text"] {
-  background-color: #084683;
-  color: #ffffff;
-  border: none;
-  border-radius: 2px;
-  padding-left: 4px;
-  border-bottom: 1px solid #ffffff;
-  font-family: "Open Sans", "sans-serif";
+  width: 60%;
+  min-width: 320px;
+  padding: 20px;
 }
 
-input[type="text"]::placeholder {
-  font-family: "Open Sans", "sans-serif";
-  color: #ffffff;
-  font-size: 1.7rem;
+textarea {
+  height: 100px;
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  border-bottom: 2px solid #084683;
+  border-radius: 2px;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  font-size: 1.9rem;
+  color: #084683;
 }
 
 .intentionLabel {
@@ -370,16 +355,15 @@ input[type="text"]::placeholder {
 
 .intentionLabel h3 {
   line-height: 2.5rem;
+  font-size: 2.2rem;
   margin-top: 10px;
-  color: #ffffff;
+  color: #084683;
   font-family: "Shippori Mincho B1", serif;
 }
 
-.react-datepicker__input-container input {
-  width: 40%;
-  height: 30px;
-  min-width: 140px;
-  margin-top: 10px;
+.intentionOne {
+  width: 80%;
+  min-width: 320px;
 }
 
 .intentionInput {
@@ -390,95 +374,113 @@ input[type="text"]::placeholder {
 }
 
 .submitButton {
-  width: 20%;
-  height: 30px;
+  width: 130px;
+  height: 40px;
   min-width: 100px;
   margin-top: 10px;
   border-radius: 2px;
   padding-left: 4px;
+  align-self: flex-end;
+  font-size: 2rem;
 }
 
 .intentionForm button:hover,
 .intentionForm button:focus {
-  background-color: #a27a8f;
+  background-color: #9d845f;
+  transition: all 0.4s ease;
 }
 
 /* Aside section */
 
 .suggestionBox {
-  margin-top: 60px;
+  min-width: 215px;
   margin-left: 30px;
-}
-
-.suggestionBox h3 {
-  color: #084683;
+  padding: 20px;
+  background-color: rgba(224, 232, 249, 0.6);
 }
 
 .suggestionInputs h4 {
   font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+  padding: 7px;
+}
+
+.intentionIdeas {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  padding: 15px;
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  color: #ffffff;
+  background: url(/src/assets/brush-strong.png);
 }
 
 /* Intention Entries */
 
 .intentionLogList {
+  margin: 0 auto;
   margin-top: 50px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 2fr));
+  grid-gap: 10px;
+  grid-auto-rows: 300px;
 }
 
 .intentionLogList li {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: calc((100% - 40px) / 3);
-  height: 150px;
-  border-top: 1px solid #804563;
-  padding-top: 3px;
-  margin-right: 10px;
-}
-
-.intentionLogList li:last-of-type {
-  margin-right: 0;
+  align-items: center;
+  height: auto;
+  padding: 10px 25px 10px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 2%;
 }
 
 .intentionLogList li .date {
   font-size: 1.7rem;
+  padding: 10px;
 }
 
 .intentionLogList li .intention {
+  font-family: "Shippori Mincho B1", serif;
   font-weight: 700;
-  color: #804563;
+  font-size: 2.8rem;
+  color: #9d845f;
   padding: 8px 0 20px 0;
 }
 
+.textExpandEntry {
+  height: 300px;
+  overflow-y: scroll;
+  font-size: 1.8rem;
+  margin-bottom: 5%;
+}
+
 .intentionLogList li button {
-  width: 80px;
+  width: 30px;
+  align-self: flex-end;
 }
 
 .intentionLogList li button:hover,
 .intentionLogList li button:focus {
-  background-color: #084683;
+  background-color: #07325e;
+  transition: all 0.4s ease;
 }
 
 /* Footer */
 
 footer {
-  display: flex;
-  height: 35px;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
+  padding: 15px;
+  text-align: center;
   font-size: 1.5rem;
-  background-color: #5c89b5;
 }
 
 footer p {
-  align-self: center;
-  margin: 0;
   color: #ffffff;
 }
 
@@ -490,41 +492,112 @@ footer a {
 
 footer a:hover,
 footer a:focus {
-  color: #084683;
+  border-bottom: 1px solid #fff;
 }
 
 /* Media queries */
 
-@media (max-width: 710px) {
+@media (max-width: 1000px) {
+  .input {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  form {
+    width: 90%;
+  }
+
+  .suggestionBox {
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+  }
+
+  .suggestionInputs {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .suggestionInputs li {
+    margin: 10px 30px;
+  }
+}
+
+@media (max-width: 880px) {
+  .intentionLogList {
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+
+  .intentionLogList li {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 90%;
+  }
+}
+
+@media (max-width: 750px) {
   header {
     text-align: center;
+  }
+
+  header h2 {
+    margin-left: 0;
   }
 
   .headerLogo {
     justify-content: center;
   }
 
-  main {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
+  .intentionForm {
+    width: 100%;
+  }
+
+  .intentionOne {
+    width: 90%;
   }
 
   .suggestionBox {
     margin-left: 0;
     margin-top: 30px;
     text-align: center;
+    align-self: center;
   }
 
-  .intentionLogList li {
-    width: calc((100% - 40px) / 2);
-    height: 200px;
+  .intentionLogList {
+    width: 80%;
+  }
+}
+
+@media (max-width: 610px) {
+  .calendar {
+    flex-direction: column;
+  }
+
+  input[type="date"] {
+    margin-left: 0;
+    min-width: 160px;
+    width: 50%;
+  }
+
+  input[type="text"] {
+    min-width: 240px;
+    width: 100%;
+  }
+
+  .suggestionInputs li {
+    margin: 10px;
   }
 }
 
 @media (max-width: 500px) {
-
+  form {
+    padding: 10px;
+  }
   .headerLogo h1 {
     font-size: 4rem;
   }
@@ -537,10 +610,6 @@ footer a:focus {
     font-size: 2rem;
   }
 
-  .react-datepicker__input-container input {
-    width: 60%;
-  }
-
   .intentionInput,
   .submitButton {
     width: 100%;
@@ -549,18 +618,25 @@ footer a:focus {
   .intentionForm {
     min-width: 300px;
     width: 100%;
+    height: auto;
   }
 
-  .intentionLogList li {
-    width: 100%;
-    height: 200px;
+  .intentionLogList {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .textExpandEntry {
+    height: 150px;
+  }
+
+  .intentionLabel h3 {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 370px) {
-
   .wrapper {
     width: 95%;
   }
-
 }
